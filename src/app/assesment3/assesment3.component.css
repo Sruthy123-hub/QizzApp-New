@@ -99,6 +99,7 @@ input[type="text"] {
   border-radius: 5px;
   text-align: center;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .add-movie-btn:hover {
@@ -120,6 +121,7 @@ input[type="text"] {
   font-size: 20px;
   font-weight: 400;
   text-decoration: none;
+  cursor: pointer;
   
 }
 
