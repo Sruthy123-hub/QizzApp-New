@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<div class="assessment-page">
+  <div class="assessment-container">
+    <!-- ✅ Show Progress Bar when Progress > 0 -->
+    <div class="progress-bar" *ngIf="progress > 0">
+      <div class="progress">
+        <div 
+          *ngFor="let step of getProgressSegments()" 
+          class="progress-segment" 
+          [style.background]="step.completed ? '#009970' : '#ddd'">
+        </div>
+      </div>
+    </div>
+
+    <p class="progress-text" *ngIf="progress > 0">1 of 5 Completed</p>
+
+    <h2>My favorite movie genre is:</h2>
+    <p class="sub_heading">(Check all that apply)</p>
+    <!-- Reactive Form -->
+    <form [formGroup]="assessmentForm">
+      <div class="options" formArrayName="selectedGenres">
+        <div class="column">
+          <label *ngFor="let genre of genres.slice(0, 6); let i = index">
+            <input type="checkbox" [formControlName]="i"> {{ genre }}
+          </label>
+        </div>
+        <div class="column">
+          <label *ngFor="let genre of genres.slice(6); let i = index">
+            <input type="checkbox" [formControlName]="i + 6"> {{ genre }}
+          </label>
+        </div>
+      </div>
+    </form>
+    <!-- Form End -->
+
+    <div class="buttons">
+      <a routerLink="/dashboard" class="exit-link">Exit Assessment</a>
+      <button class="next-btn" (click)="saveSelections()" [disabled]="!isSelectionMade()">Next</button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
